@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="elevator">
+      <div class="board">
+        <div class="parent-affichage">
+          <div class="affichage">
+            <p class="aff">
+              These floors are filled with X passengers who are waiting
+            </p>
+            <div class="floor-display">
+            </div>
+          </div>
+        </div>
+        <div class="parent-command">
+          <div class="command-floor">
+            <div class="top">
+              <div class="text-cmd">
+                <div class="text-wrapper-4">Floor</div>
+                <div class="text-wrapper-5">0</div>
+              </div>
+              <div class="flech-top">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="#c51a1a"
+                    d="M15 20H9v-8H4.16L12 4.16L19.84 12H15z"
+                  />
+                </svg>
+              </div>
+              <div class="flech-bottom">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                >
+                  <path fill="#0fa958" d="M9 4h6v8h4.84L12 19.84L4.16 12H9z" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="grp-button">
+              <div class="ctn1-btn">
+                <button class="button-4">
+                  <div class="floor-butt-4">4</div>
+                </button>
+                <button class="button-2">
+                  <div class="floor-butt-2">2</div>
+                </button>
+                <button class="button-0">
+                  <div class="floor-butt-0">0</div>
+                </button>
+              </div>
+              <div class="ctn2-btn">
+                <button class="button-3">
+                  <div class="floor-butt-3">3</div>
+                </button>
+                <button class="button-1">
+                  <div class="floor-butt-1">1</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="parent-run">
+          <div class="run">
+            <button class="Reset">Reset</button>
+            <button class="Start">Start</button>
+          </div>
+        </div>
+      </div>
+      <div class="building">
+        <div class="floor" data-floor="4">F4</div>
+        <div class="floor" data-floor="3">F3</div>
+        <div class="floor" data-floor="2">F2</div>
+        <div class="floor" data-floor="1">F1</div>
+        <div class="floor" data-floor="0">F0</div>
+        <div class="elv">
+          <div class="overlap-2">
+            <div class="rectangle"></div>
+            <div class="right">
+              <div class="door"></div>
+              <div class="door-inner"></div>
+            </div>
+            <div class="left">
+              <div class="door"></div>
+              <div class="door-inner"></div>
+            </div>
+
+            <div class="rectangle-3"></div>
+            <div class="rectangle-4"></div>
+            <div class="text-wrapper">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/elevator.js"></script>
+  </body>
+</html>
