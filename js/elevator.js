@@ -11,14 +11,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const floorIndicatorElv = document.querySelector(".elv .text-Elv");
   const direction = document.querySelector(".direction");
   const step = document.querySelector(".step");
-  const passenger = document.querySelector(".passenger");
+
   const timer = document.querySelector(".timer");
   const floorHeight = buildingHeight / 5;
   let floorArray = [];
   let currentFloor = 0;
   let stepsCount = 0;
   let directionElv = 0;
-  let passengerCount = 0;
   let timerCount = 0;
   let timerOpp = 0;
   console.log("floorHeight", floorHeight);
@@ -31,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const distance = target - current;
       let startTime = null;
       const animationDuration = 2000;
-
+      let previousFloor = currentFloor;
       if (floorNumber > currentFloor) {
         directionElv = "Up";
       } else if (floorNumber < currentFloor) {
@@ -58,8 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
           floorIndicatorElv.innerText = floorNumber;
           changeStateDoor("7ol");
           if (currentFloor != floorNumber) {
-            stepsCount++;
+            let passedFloor = Math.abs(floorNumber-previousFloor);
+            stepsCount += passedFloor;
             updateStep();
+            timerRun();
           }
           setTimeout(() => {
             currentFloor = floorNumber;
@@ -102,32 +103,14 @@ document.addEventListener("DOMContentLoaded", function () {
       doorRight.classList.add("door-close");
     }
   }
-  function closeFloor() {
-    if (floorArray.length === 0) {
-      return null;
+  
+  async function processingFloor() {
+    for (let i = 0; i < floorArray.length; i++) {
+      await moveToFloor(floorArray[i]);
     }
-    return floorArray.reduce((prev, curr) =>
-      Math.abs(curr - currentFloor) < Math.abs(prev - currentFloor)
-        ? curr
-        : prev
-    );
+    floorArray = [];
   }
-  function processingFloor() {
-    if (floorArray.length > 0) {
-     
-      const nextFloor = closeFloor();
-      let indexFloor = floorArray.indexOf(nextFloor);
-      if (indexFloor !== -1) {
-        floorArray.splice(indexFloor, 1);
-      }
-      moveToFloor(nextFloor).then(() => {
-        processingFloor();
-        
-      });
-    } else {
-      console.log("empty array");
-    }
-  }
+
   function debounce(mainFunction, delay) {
     let timeout;
     return (...args) => {
@@ -153,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const debounceMoveToFloor = debounce(processingFloor, 3000);
 
   startButton.addEventListener("click", function() {
-    timerRun(); 
+     
     debounceMoveToFloor(); 
 });  resetButton.addEventListener("click", resetElevator);
   display.forEach((button) => {
